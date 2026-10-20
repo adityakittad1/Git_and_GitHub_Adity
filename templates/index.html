@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>To-Do</title><link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"></head>
+<body><main class="card"><h1>To-Do List</h1><p class="subhead">Add an item to your MongoDB-backed task list.</p>
+<form id="todo-form">
+<label for="itemId">Item ID</label><input id="itemId" name="itemId" placeholder="Optional numeric ID">
+<label for="itemUUID">Item UUID</label><input id="itemUUID" name="itemUUID" readonly placeholder="Generated on submit">
+<label for="itemHash">Item Hash</label><input id="itemHash" name="itemHash" readonly placeholder="Generated on submit">
+<label for="itemName">Item Name</label><input id="itemName" name="itemName" required maxlength="120">
+<label for="itemDescription">Item Description</label><textarea id="itemDescription" name="itemDescription" required rows="4"></textarea>
+<button type="submit">Save item</button></form><p id="message" role="status"></p></main><script src="{{ url_for('static', filename='app.js') }}"></script></body></html>
