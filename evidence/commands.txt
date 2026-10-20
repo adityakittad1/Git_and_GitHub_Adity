@@ -1,0 +1,92 @@
+Git command evidence captured from the local repository.
+
+## Repository branches and commit graph
+> git branch -a
+Adity
+  Adity_new
+* main
+  master_1
+  master_2
+
+## JSON conflict resolution commit
+> git show --stat --oneline 0dcfdfb
+0dcfdfb Resolve JSON conflict using _new version
+
+ api_data.json | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+## Parallel feature branch commits
+> git log --all --graph --decorate --oneline --grep=to-do form --grep=MongoDB
+* 333e716 Merge MongoDB API feature
+* 989b7a8 (master_2) Implement MongoDB to-do POST payload handling
+* f4320c5 Merge to-do form feature
+* f241c1e Create to-do form with name and description
+
+## Separate field commits
+> git log --all --format=%h %s --grep=Add Item
+3ac1382 Add Item Hash field
+da896a7 Add Item UUID field
+7ae200a Add Item ID field
+
+## Reset and rebase reflog
+> git reflog --all --oneline -18
+4dcdcb6 refs/heads/main@{0}: merge Adity: Merge made by the 'ort' strategy.
+4dcdcb6 HEAD@{0}: merge Adity: Merge made by the 'ort' strategy.
+44ded0f HEAD@{1}: checkout: moving from Adity to main
+4816d92 refs/heads/Adity@{0}: commit: Add project guide on Adity branch
+4816d92 HEAD@{2}: commit: Add project guide on Adity branch
+154fa79 HEAD@{3}: checkout: moving from main to Adity
+44ded0f refs/heads/main@{1}: commit: Show generated identifiers after saving
+44ded0f HEAD@{4}: commit: Show generated identifiers after saving
+2690d88 refs/heads/main@{2}: merge master_1: Merge made by the 'ort' strategy.
+2690d88 HEAD@{5}: merge master_1: Merge made by the 'ort' strategy.
+a181225 HEAD@{6}: checkout: moving from master_1 to main
+5917c0f refs/heads/master_1@{0}: commit: Render the three fields once in the final form
+5917c0f HEAD@{7}: commit: Render the three fields once in the final form
+3ac1382 refs/heads/master_1@{1}: rebase (finish): refs/heads/master_1 onto a181225193bd3791030ee2eadceb4b7668a8db8c
+3ac1382 HEAD@{8}: rebase (finish): returning to refs/heads/master_1
+3ac1382 HEAD@{9}: rebase (pick): Add Item Hash field
+da896a7 HEAD@{10}: commit: Add Item UUID field
+a181225 HEAD@{11}: rebase (start): checkout main
+
+## Full commit graph
+> git log --all --graph --decorate --oneline -20
+*   4dcdcb6 (HEAD -> main) Merge Adity project branch
+|\  
+| * 4816d92 (Adity) Add project guide on Adity branch
+* | 44ded0f Show generated identifiers after saving
+* |   2690d88 Merge rebased to-do fields
+|\ \  
+| * | 5917c0f (master_1) Render the three fields once in the final form
+| * | 3ac1382 Add Item Hash field
+| * | da896a7 Add Item UUID field
+|/ /  
+* | a181225 Recommit main at Item ID reset state
+* | 7ae200a Add Item ID field
+* |   333e716 Merge MongoDB API feature
+|\ \  
+| * | 989b7a8 (master_2) Implement MongoDB to-do POST payload handling
+* | |   e2af69c Merge form field baseline
+|\ \ \  
+| |/ /  
+|/| |   
+| * | 7a4b2e6 Keep the initial form to name and description
+* | | f4320c5 Merge to-do form feature
+|\| | 
+| * | f241c1e Create to-do form with name and description
+|/ /  
+* | 465e4af Serve the branch JSON file from the API
+* |   0dcfdfb Resolve JSON conflict using _new version
+|\ \  
+| * | de0856f (Adity_new) Update JSON payload on _new branch
+* | | 0641be3 Update JSON payload on main
+|/ /  
+* | 7e47d10 Add Flask project files
+
+## Final repository state
+> git status --short --branch
+## main
+?? SUBMISSION_REPORT.docx
+?? WORKFLOW_COMMANDS.md
+?? evidence/
+\n## GitHub SSH push confirmation (output provided by user)\nRepository: https://github.com/adityakittad1/Git_and_GitHub_Adity\nBranches confirmed by git ls-remote --heads origin: Adity, Adity_new, main, master_1, master_2\n
