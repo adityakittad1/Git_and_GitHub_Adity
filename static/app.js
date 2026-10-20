@@ -8,8 +8,15 @@ form.addEventListener("submit", async (event) => {
       method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(data)
     });
     const result = await response.json();
-    message.textContent = response.ok ? `${result.message} (UUID ${result.item.itemUUID})` : result.error;
+    if (response.ok) {
+      form.elements.itemUUID.value = result.item.itemUUID;
+      form.elements.itemHash.value = result.item.itemHash;
+      message.textContent = result.message;
+    } else {
+      message.textContent = result.error;
+    }
   } catch (error) {
     message.textContent = "Could not reach the server.";
   }
 });
+
