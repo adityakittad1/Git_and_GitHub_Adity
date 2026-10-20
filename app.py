@@ -25,6 +25,8 @@ def api():
 @app.post("/submittodoitem")
 def submit_todo_item():
     payload = request.get_json(silent=True) or request.form
+    if not hasattr(payload, "get"):
+        return jsonify({"error": "Expected a JSON object or form fields"}), 400
     item_name = str(payload.get("itemName", "")).strip()
     item_description = str(payload.get("itemDescription", "")).strip()
     if not item_name or not item_description:
@@ -46,6 +48,7 @@ def submit_todo_item():
 
 if __name__ == "__main__":
     app.run(debug=True)
+
 
 
 
