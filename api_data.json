@@ -1,1 +1,5 @@
-{"project":"Git and GitHub Flask workflow","status":"initial"}
+{
+  "project": "Git and GitHub Flask workflow",
+  "status": "updated from the _new branch",
+  "message": "The /api endpoint is ready for the to-do workflow."
+}
