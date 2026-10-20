@@ -12,12 +12,15 @@ def get_collection():
     client = MongoClient(os.getenv("MONGODB_URI", "mongodb://localhost:27017/"), serverSelectionTimeoutMS=1500)
     return client[os.getenv("MONGODB_DATABASE", "git_workflow")]["todo_items"]
 
-@app.get("/")`ndef index():
+@app.get("/")
+def index():
     return render_template("index.html")
 
 @app.get("/api")
 def api():
-    return jsonify({"project": "Git and GitHub Flask workflow", "status": "ready"})
+    with open("api_data.json", encoding="utf-8") as data_file:
+        from json import load
+        return jsonify(load(data_file))
 
 @app.post("/submittodoitem")
 def submit_todo_item():
@@ -43,4 +46,6 @@ def submit_todo_item():
 
 if __name__ == "__main__":
     app.run(debug=True)
+
+
 
