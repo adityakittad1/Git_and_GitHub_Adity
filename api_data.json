@@ -1,5 +1,5 @@
 {
   "project": "Git and GitHub Flask workflow",
-  "status": "main branch alternate payload",
-  "message": "The /api endpoint is ready."
+  "status": "updated from the _new branch",
+  "message": "The /api endpoint is ready for the to-do workflow."
 }
